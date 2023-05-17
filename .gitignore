@@ -1,0 +1,5 @@
+target
+allure-results
+.idea
+/src/main/kotlin/constants/SharedConstants.kt
+/src/main/resources/hibernate.cfg.xml
