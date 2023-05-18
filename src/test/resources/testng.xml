@@ -1,21 +1,17 @@
-<!--<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">-->
-<!--<suite name="WebUI Tests for different pools" parallel="tests" thread-count="2">-->
-<!--    <test name="Firefox Test">-->
-<!--        <parameter name="browser" value="firefox" />-->
-<!--        <classes>-->
-<!--            <class name="WebUITests" />-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--    <test name="Chrome Test">-->
-<!--        <parameter name="browser" value="chrome" />-->
-<!--        <classes>-->
-<!--            <class name="WebUITests" />-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--</suite>-->
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="WebUI Tests for different pools">
-    <test name="Chrome Test">
+<suite name="Tests">
+    <test name="API test">
+        <classes>
+            <class name="APITests" />
+        </classes>
+    </test>
+    <test name="WebUI Firefox Test">
+        <parameter name="browser" value="firefox" />
+        <classes>
+            <class name="WebUITests" />
+        </classes>
+    </test>
+    <test name="WebUI Chrome Test">
         <parameter name="browser" value="chrome" />
         <classes>
             <class name="WebUITests" />

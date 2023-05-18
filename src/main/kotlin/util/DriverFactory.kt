@@ -9,8 +9,12 @@ object DriverFactory {
         driverThreadLocal.set(driver)
     }
 
-    fun getDriver(): WebDriver {
-        return driverThreadLocal.get()
+    fun getDriver(): WebDriver? {
+        return try {
+            driverThreadLocal.get()
+        } catch (e: NullPointerException) {
+            null
+        }
     }
 
     fun removeDriver() {

@@ -18,7 +18,11 @@ class APITests {
     fun setUpConf(){
         RestAssured.baseURI = SharedTrelloAPIConstants.baseUri
     }
-    @Test(dataProvider = "card-test-data", dataProviderClass = ApiDataProviders::class)
+    @Test(
+        dataProvider = "card-test-data",
+        dataProviderClass = ApiDataProviders::class,
+        description="Creation of new card on existing board"
+    )
     fun createNewCard(card: Card) {
         val response = TrelloAPIRequest().createNewCard(card)
 
@@ -27,7 +31,11 @@ class APITests {
         AssertJUnit.assertEquals(response.jsonPath().get("name"), card.name)
     }
 
-    @Test(dependsOnMethods = ["createNewCard"], dataProvider = "comment-test-data", dataProviderClass = ApiDataProviders::class)
+    @Test(
+        dependsOnMethods = ["createNewCard"],
+        dataProvider = "comment-test-data",
+        dataProviderClass = ApiDataProviders::class,
+        description="Adding new comment on existing card")
     fun addCommentToCard(comment: Comment) {
         val response = TrelloAPIRequest().addCommentToCard(comment, cardId)
 
@@ -36,7 +44,10 @@ class APITests {
         AssertJUnit.assertEquals(response.jsonPath().get("data.text"), comment.text)
     }
 
-    @Test(dependsOnMethods = ["addCommentToCard"], dataProviderClass = ApiDataProviders::class)
+    @Test(
+        dependsOnMethods = ["addCommentToCard"],
+        dataProviderClass = ApiDataProviders::class,
+        description="Deleting comment")
     fun deleteComment() {
         val response = TrelloAPIRequest().deleteComment(commentId)
 

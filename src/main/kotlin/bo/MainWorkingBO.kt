@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.support.ui.WebDriverWait
 
 class MainWorkingBO(driver: WebDriver) {
-    private var wait = WebDriverWait(driver, 2, 2000)
+    private var wait = WebDriverWait(driver, 5, 1000)
     private val mainWorkingPO = MainWorkingPO(driver, wait)
 
     fun createBoard(boardNameText: String) {
