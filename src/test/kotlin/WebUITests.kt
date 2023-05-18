@@ -22,20 +22,20 @@ class WebUITests {
         DriverFactory.setDriver(driver!!)
     }
 
-    @Test
+    @Test(description = "Logging in")
     fun loginTest(){
         driver!!["https://trello.com/login"]
         LoginBO(driver!!).login(SharedTrelloConstants.trelloEmail, SharedTrelloConstants.trelloPassword)
         LoginBO(driver!!).checkIfLoggedIn()
     }
 
-    @Test(dependsOnMethods = ["loginTest"])
+    @Test(dependsOnMethods = ["loginTest"], description = "creating board")
     fun createBoard(){
         MainWorkingBO(driver!!).createBoard("Some great$randomNumber name")
         MainWorkingBO(driver!!).checkIfBoardCreatedAndWeOnIt("Some great$randomNumber name")
     }
 
-    @Test(dependsOnMethods = ["createBoard"])
+    @Test(dependsOnMethods = ["createBoard"], description = "creating card for this board")
     fun createCardForBoard(){
         BoardBO(driver!!).createList("Some another great$randomNumber name")
         BoardBO(driver!!).checkIfListCreated("Some another great$randomNumber name")

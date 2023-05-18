@@ -1,5 +1,6 @@
 package bo
 
+import io.qameta.allure.Step
 import po.MainWorkingPO
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.support.ui.WebDriverWait
@@ -9,6 +10,7 @@ class MainWorkingBO(driver: WebDriver) {
     private var wait = WebDriverWait(driver, 5, 500)
     private val mainWorkingPO = MainWorkingPO(driver, wait)
 
+    @Step("Creating board with name: {0}")
     fun createBoard(boardNameText: String) {
         val createButton = mainWorkingPO.getCreateBoardButton()
         createButton.clickOnButton()
@@ -19,6 +21,7 @@ class MainWorkingBO(driver: WebDriver) {
         mainWorkingPO.getSubmitButton().clickOnButton()
     }
 
+    @Step("Check if board with name {0} exists and we are in it")
     fun checkIfBoardCreatedAndWeOnIt(text: String){
         AssertJUnit.assertEquals(mainWorkingPO.getBoardNameH().getText(), text)
     }

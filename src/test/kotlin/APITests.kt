@@ -18,6 +18,7 @@ class APITests {
     fun setUpConf(){
         RestAssured.baseURI = SharedTrelloAPIConstants.baseUri
     }
+
     @Test(
         dataProvider = "card-test-data",
         dataProviderClass = ApiDataProviders::class,

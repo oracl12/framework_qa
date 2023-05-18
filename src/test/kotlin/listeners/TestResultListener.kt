@@ -28,7 +28,7 @@ class TestResultListener : ITestListener {
     }
 
     override fun onTestSuccess(result: ITestResult?) {
-        super.onTestSuccess(result)
+        saveTestData(result)
     }
 
     override fun onTestFailure(result: ITestResult?) {
@@ -52,7 +52,6 @@ class TestResultListener : ITestListener {
         // Not implemented
     }
 
-    @Attachment(value = "Db savings for {result.name}")
     private fun saveTestData(result: ITestResult?) {
         val session = HibernateUtil.getSessionFactory().openSession()
 
@@ -71,6 +70,7 @@ class TestResultListener : ITestListener {
         session.beginTransaction()
         session.save(resultRecord)
         session.transaction.commit()
+//        Allure.addAttachment("text", "Result of test will be saved at db with status: ${result.isSuccess}");
         saveTextLog("Result of test will be saved at db with status: ${result.isSuccess}")
     }
 
