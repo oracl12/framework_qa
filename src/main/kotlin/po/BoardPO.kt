@@ -16,6 +16,9 @@ class BoardPO(driverWeb: WebDriver, private val wait: WebDriverWait) {
     @FindBy(xpath = "//*[@id=\"board\"]/div/form/div/input")
     var submitButton: WebElement? = null
 
+    @FindBy(xpath = "//*[@id=\"board\"]/div[1]/div/div[1]/textarea")
+    var listH: WebElement? = null
+
     init {
         PageFactory.initElements(driverWeb, this)
     }
@@ -28,5 +31,10 @@ class BoardPO(driverWeb: WebDriver, private val wait: WebDriverWait) {
     fun getSubmitButton(): ElementWrapper {
         wait.until(ExpectedConditions.visibilityOf(submitButton))
         return ElementWrapper(submitButton!!)
+    }
+
+    fun getListH(): ElementWrapper {
+        wait.until(ExpectedConditions.visibilityOf(listH))
+        return ElementWrapper(listH!!)
     }
 }

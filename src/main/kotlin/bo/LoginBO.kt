@@ -3,9 +3,10 @@ package bo
 import po.LoginPO
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.support.ui.WebDriverWait
+import org.testng.AssertJUnit
 
 class LoginBO(driver: WebDriver) {
-    private var wait = WebDriverWait(driver, 2, 2000)
+    private var wait = WebDriverWait(driver, 3, 500)
     private val loginPO = LoginPO(driver, wait)
 
     fun login(emailText: String, passwordText: String) {
@@ -13,5 +14,9 @@ class LoginBO(driver: WebDriver) {
         loginPO.getContinueButton().clickOnButton()
         loginPO.getPasswordInput().setInputText(passwordText)
         loginPO.getSubmitButton().clickOnButton()
+    }
+
+    fun checkIfLoggedIn() {
+        AssertJUnit.assertTrue(loginPO.getLoginLogoButton().isVisible())
     }
 }

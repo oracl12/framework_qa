@@ -19,6 +19,9 @@ class MainWorkingPO(driver: WebDriver, private val wait: WebDriverWait) {
     @FindBy(xpath = "/html/body/div[3]/div/section/div/form/button")
     private var submitButton: WebElement? = null
 
+    @FindBy(xpath = "//*[@id=\"content\"]/div/div[1]/div[1]/div/div/span[1]/div[2]/h1")
+    private var boardNameH: WebElement? = null
+
     init {
         PageFactory.initElements(driver, this)
     }
@@ -36,5 +39,10 @@ class MainWorkingPO(driver: WebDriver, private val wait: WebDriverWait) {
     fun getSubmitButton(): ElementWrapper {
         wait.until(ExpectedConditions.visibilityOf(submitButton))
         return ElementWrapper(submitButton!!)
+    }
+
+    fun getBoardNameH(): ElementWrapper {
+        wait.until(ExpectedConditions.visibilityOf(boardNameH))
+        return ElementWrapper(boardNameH!!)
     }
 }

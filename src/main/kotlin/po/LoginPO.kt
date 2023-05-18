@@ -1,5 +1,6 @@
 package po
 
+import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
@@ -23,6 +24,9 @@ class LoginPO(driverWeb: WebDriver, private val wait: WebDriverWait) {
     @FindBy(xpath = "//*[@id=\"login-submit\"]")
     var submitButton: WebElement? = null
 
+    @FindBy(xpath = "//*[@id=\"header\"]/div[2]/div[4]/button/span/span")
+    var loginLogo: WebElement? = null
+
     init {
         PageFactory.initElements(driverWeb, this)
     }
@@ -45,5 +49,10 @@ class LoginPO(driverWeb: WebDriver, private val wait: WebDriverWait) {
     fun getSubmitButton(): ElementWrapper {
         wait.until(ExpectedConditions.visibilityOf(submitButton))
         return ElementWrapper(submitButton!!)
+    }
+
+    fun getLoginLogoButton(): ElementWrapper {
+        wait.until(ExpectedConditions.visibilityOf(loginLogo))
+        return ElementWrapper(loginLogo!!)
     }
 }

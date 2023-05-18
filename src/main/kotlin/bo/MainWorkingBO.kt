@@ -3,9 +3,10 @@ package bo
 import po.MainWorkingPO
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.support.ui.WebDriverWait
+import org.testng.AssertJUnit
 
 class MainWorkingBO(driver: WebDriver) {
-    private var wait = WebDriverWait(driver, 5, 1000)
+    private var wait = WebDriverWait(driver, 5, 500)
     private val mainWorkingPO = MainWorkingPO(driver, wait)
 
     fun createBoard(boardNameText: String) {
@@ -16,5 +17,9 @@ class MainWorkingBO(driver: WebDriver) {
         boardNameInput.setInputText(boardNameText)
 
         mainWorkingPO.getSubmitButton().clickOnButton()
+    }
+
+    fun checkIfBoardCreatedAndWeOnIt(text: String){
+        AssertJUnit.assertEquals(mainWorkingPO.getBoardNameH().getText(), text)
     }
 }

@@ -11,11 +11,15 @@ class ElementWrapper(private val element: WebElement) {
         element.sendKeys(text)
     }
 
-    fun isVisible() {
-        element.isDisplayed
+    fun getText(): String {
+        return element.text
     }
 
-    fun isEnableToClick() {
-        element.isEnabled
+    fun isVisible(): Boolean {
+        return element.isDisplayed
+    }
+
+    fun isEnableToClick(): Boolean {
+        return element.isEnabled
     }
 }
